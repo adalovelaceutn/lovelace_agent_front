@@ -1,0 +1,216 @@
+<div class="auth-container">
+  <mat-card class="auth-card">
+    <mat-card-header>
+      <mat-card-title>Crear cuenta</mat-card-title>
+      <mat-card-subtitle>Completá el formulario para registrarte</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      @if (success) {
+        <div class="success-alert" role="status">
+          <mat-icon>check_circle</mat-icon>
+          <span>¡Cuenta creada correctamente! Redirigiendo al login…</span>
+        </div>
+      } @else {
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+          <div class="row-2col">
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input
+                matInput
+                formControlName="nombre"
+                placeholder="Tu nombre"
+                autocomplete="given-name"
+              />
+              @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
+                <mat-error>El nombre es requerido</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Apellido</mat-label>
+              <input
+                matInput
+                formControlName="apellido"
+                placeholder="Tu apellido"
+                autocomplete="family-name"
+              />
+              @if (form.get('apellido')?.invalid && form.get('apellido')?.touched) {
+                <mat-error>El apellido es requerido</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>DNI</mat-label>
+            <mat-icon matPrefix>badge</mat-icon>
+            <input
+              matInput
+              formControlName="dni"
+              placeholder="Número de documento"
+              autocomplete="off"
+            />
+            @if (form.get('dni')?.hasError('required') && form.get('dni')?.touched) {
+              <mat-error>El DNI es requerido</mat-error>
+            } @else if (form.get('dni')?.hasError('maxlength') && form.get('dni')?.touched) {
+              <mat-error>Máximo 20 caracteres</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <mat-icon matPrefix>cake</mat-icon>
+            <input
+              matInput
+              type="date"
+              formControlName="fecha_nacimiento"
+            />
+            @if (form.get('fecha_nacimiento')?.invalid && form.get('fecha_nacimiento')?.touched) {
+              <mat-error>La fecha de nacimiento es requerida</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <mat-icon matPrefix>email</mat-icon>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              placeholder="ejemplo@correo.com"
+              autocomplete="email"
+            />
+            @if (form.get('email')?.hasError('required') && form.get('email')?.touched) {
+              <mat-error>El email es requerido</mat-error>
+            } @else if (form.get('email')?.hasError('email') && form.get('email')?.touched) {
+              <mat-error>Ingresá un email válido</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nombre de usuario</mat-label>
+            <mat-icon matPrefix>alternate_email</mat-icon>
+            <input
+              matInput
+              formControlName="user_name"
+              placeholder="Tu nombre de usuario"
+              autocomplete="username"
+            />
+            @if (form.get('user_name')?.invalid && form.get('user_name')?.touched) {
+              <mat-error>El nombre de usuario es requerido</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Domicilio</mat-label>
+            <mat-icon matPrefix>home</mat-icon>
+            <input
+              matInput
+              formControlName="domicilio"
+              placeholder="Tu dirección"
+              autocomplete="street-address"
+            />
+            @if (form.get('domicilio')?.invalid && form.get('domicilio')?.touched) {
+              <mat-error>El domicilio es requerido</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Teléfono</mat-label>
+            <mat-icon matPrefix>phone</mat-icon>
+            <input
+              matInput
+              type="tel"
+              formControlName="telefono"
+              placeholder="Tu número de teléfono"
+              autocomplete="tel"
+            />
+            @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {
+              <mat-error>El teléfono es requerido</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Contraseña</mat-label>
+            <mat-icon matPrefix>lock</mat-icon>
+            <input
+              matInput
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+              placeholder="Mínimo 6 caracteres"
+              autocomplete="new-password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="hidePassword = !hidePassword"
+              [attr.aria-label]="'Alternar visibilidad'"
+            >
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            @if (form.get('password')?.hasError('required') && form.get('password')?.touched) {
+              <mat-error>La contraseña es requerida</mat-error>
+            } @else if (form.get('password')?.hasError('minlength') && form.get('password')?.touched) {
+              <mat-error>Mínimo 6 caracteres</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Confirmar contraseña</mat-label>
+            <mat-icon matPrefix>lock_reset</mat-icon>
+            <input
+              matInput
+              [type]="hideConfirm ? 'password' : 'text'"
+              formControlName="confirmPassword"
+              placeholder="Repetí tu contraseña"
+              autocomplete="new-password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="hideConfirm = !hideConfirm"
+              [attr.aria-label]="'Alternar visibilidad'"
+            >
+              <mat-icon>{{ hideConfirm ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            @if (form.get('confirmPassword')?.hasError('required') && form.get('confirmPassword')?.touched) {
+              <mat-error>Confirmá tu contraseña</mat-error>
+            } @else if (form.hasError('passwordMismatch') && form.get('confirmPassword')?.touched) {
+              <mat-error>Las contraseñas no coinciden</mat-error>
+            }
+          </mat-form-field>
+
+          @if (error) {
+            <div class="error-alert" role="alert">
+              <mat-icon>error_outline</mat-icon>
+              <span>{{ error }}</span>
+            </div>
+          }
+
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            class="full-width action-btn"
+            [disabled]="loading"
+          >
+            @if (loading) {
+              <mat-spinner diameter="22" />
+            } @else {
+              Crear cuenta
+            }
+          </button>
+        </form>
+      }
+    </mat-card-content>
+
+    <mat-card-actions>
+      <p class="nav-link">
+        ¿Ya tenés cuenta? <a routerLink="/auth/login">Iniciá sesión</a>
+      </p>
+    </mat-card-actions>
+  </mat-card>
+</div>

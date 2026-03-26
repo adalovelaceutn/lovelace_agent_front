@@ -1,0 +1,89 @@
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f2f5;
+  padding: 16px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 8px 16px 16px;
+}
+
+mat-card-header {
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+  display: block;
+}
+
+.row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+
+.action-btn {
+  height: 46px;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.error-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #c62828;
+  font-size: 14px;
+  background: #ffebee;
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.success-alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #2e7d32;
+  font-size: 15px;
+  background: #e8f5e9;
+  border-radius: 4px;
+  padding: 16px;
+  margin: 8px 0 16px;
+}
+
+.nav-link {
+  text-align: center;
+  color: #757575;
+  font-size: 14px;
+  width: 100%;
+  margin: 4px 0 0;
+}
+
+.nav-link a {
+  color: #1565c0;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.nav-link a:hover {
+  text-decoration: underline;
+}
+
+mat-card-actions {
+  padding: 0;
+  margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+  .row-2col {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
