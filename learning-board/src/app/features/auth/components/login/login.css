@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600&display=swap');
+
 .auth-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f0f2f5;
+  background: #e4e8ed;
   padding: 16px;
+  font-family: 'Nunito Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .auth-card {
@@ -15,6 +18,15 @@
 
 mat-card-header {
   margin-bottom: 20px;
+  justify-content: center;
+  text-align: center;
+}
+
+mat-card-title {
+  width: 100%;
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0.2px;
 }
 
 .full-width {

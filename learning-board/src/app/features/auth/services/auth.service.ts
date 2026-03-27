@@ -43,7 +43,12 @@ export class AuthService {
   }
 
   loginWithGoogle(): void {
-    window.location.href = `${this.API_URL}/auth/google`;
+    const callbackUrl = `${window.location.origin}/auth/callback`;
+    window.location.href = `${this.API_URL}/auth/google?redirect_uri=${encodeURIComponent(callbackUrl)}`;
+  }
+
+  storeToken(token: string): void {
+    localStorage.setItem(this.TOKEN_KEY, token);
   }
 
   logout(): void {
